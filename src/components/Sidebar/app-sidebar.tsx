@@ -32,7 +32,7 @@ import {
 
 const data = {
   user: {
-    name: "Oltion",
+    name: "Oltion Nezha",
     email: "oltion@example.com",
     avatar: "https://avatars.githubusercontent.com/0lcio",
   },
@@ -46,67 +46,16 @@ const data = {
       ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Gare",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Preventivi",
+          url: "quote",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          title: "In corso",
+          url: "ongoing",
         },
       ],
     },
@@ -114,7 +63,7 @@ const data = {
   navSecondary: [
     {
       title: "Support",
-      url: "#",
+      url: "",
       icon: LifeBuoy,
     },
   ],

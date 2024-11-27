@@ -128,7 +128,7 @@ const MainTable: React.FC = () => {
   }
 
   return (
-    <div className=" mx-auto pb-15 scrollbar-hidden">
+    <div className="mx-auto pb-15 scrollbar-hidden">
       <p className="text-2xl font-bold">PROGETTI</p>
       <p className="text-sm text-muted-foreground pb-5">Clicca su uno dei progetti per poter vedere il contenuto</p>
       <DataTable columns={columns} data={data} />

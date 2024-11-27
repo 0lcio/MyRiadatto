@@ -29,6 +29,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { ModeToggle } from "../mode-toggle"
 
 export function NavUser({
   user,
@@ -44,6 +45,7 @@ export function NavUser({
   return (
     <SidebarMenu>
       <SidebarMenuItem>
+        <div className="flex justify-between items-center gap-2 px-1 py-1.5 text-left text-sm">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
@@ -108,6 +110,8 @@ export function NavUser({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        <ModeToggle />
+        </div>
       </SidebarMenuItem>
     </SidebarMenu>
   )

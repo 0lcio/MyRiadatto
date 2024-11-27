@@ -13,6 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { Toaster } from "@/components/ui/sonner";
 
 const Layout = ({ children }) => {
   return (
@@ -38,8 +39,9 @@ const Layout = ({ children }) => {
             </Breadcrumb>
           </div>
         </header>
-        <main className="mx-5">
+        <main className="pb-10 md:pb-0 px-5 w-screen md:w-full">
             {children}
+            <Toaster richColors theme="light" toastOptions={{}} />
         </main>
       </SidebarInset>
     </SidebarProvider>
