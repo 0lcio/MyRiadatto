@@ -1,11 +1,10 @@
 "use client";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./components/data-table-column-header";
 import { DataTableRowActions } from "./components/data-table-row-actions";
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+
 export type Payment = {
   id: string;
   location: string;
@@ -45,11 +44,16 @@ export const columns: ColumnDef<Payment>[] = [
       <DataTableColumnHeader column={column} title="Codice" />
     ),
     accessorKey: "id",
-    cell: (info) => (
-      <Link to={`/${info.getValue()}`}>
-        {info.getValue()}
-      </Link>
-    ),
+    cell: (info) => {
+      const location = useLocation();
+      const currentPath = location.pathname;
+      const newPath = `${currentPath}/${info.getValue()}`;
+      return (
+        <Link to={newPath}>
+          {info.getValue()}
+        </Link>
+      );
+    },
   },
   {
     id: "location",
@@ -57,11 +61,16 @@ export const columns: ColumnDef<Payment>[] = [
       <DataTableColumnHeader column={column} title="Ente" />
     ),
     accessorKey: "location",
-    cell: (info) => (
-      <Link to={`/${info.row.original.id}`}>
-        {info.getValue()}
-      </Link>
-    )
+    cell: (info) => {
+      const location = useLocation();
+      const currentPath = location.pathname;
+      const newPath = `${currentPath}/${info.row.original.id}`;
+      return (
+        <Link to={newPath}>
+          {info.getValue()}
+        </Link>
+      );
+    }
   },
   {
     id: "title",
@@ -69,11 +78,16 @@ export const columns: ColumnDef<Payment>[] = [
       <DataTableColumnHeader column={column} title="Title" />
     ),
     accessorKey: "title",
-    cell: (info) => (
-      <Link to={`/${info.row.original.id}`}>
-        {info.getValue()}
-      </Link>
-    ),
+    cell: (info) => {
+      const location = useLocation();
+      const currentPath = location.pathname;
+      const newPath = `${currentPath}/${info.row.original.id}`;
+      return (
+        <Link to={newPath}>
+          {info.getValue()}
+        </Link>
+      );
+    },
   },
   {
     id: "assigned",
@@ -81,11 +95,16 @@ export const columns: ColumnDef<Payment>[] = [
       <DataTableColumnHeader column={column} title="Tecnico Incaricato" />
     ),
     accessorKey: "assigned",
-    cell: (info) => (
-      <Link to={`/${info.row.original.id}`}>
-        {info.getValue()}
-      </Link>
-    ),
+    cell: (info) => {
+      const location = useLocation();
+      const currentPath = location.pathname;
+      const newPath = `${currentPath}/${info.row.original.id}`;
+      return (
+        <Link to={newPath}>
+          {info.getValue()}
+        </Link>
+      );
+    },
   },
   {
     id: "status",
@@ -106,19 +125,6 @@ export const columns: ColumnDef<Payment>[] = [
       return Array.isArray(value) ? value.join(" - ") : "";
     },
   },
-  /* {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  }, */
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,

@@ -6,6 +6,7 @@ import "./App.css";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import MainTable from "./components/Table/page";
 import { Tender } from "./components/Tender/Tender";
+import { Ongoing } from "./components/Ongoing/Ongoing";
 
 function App() {
   return (
@@ -14,9 +15,11 @@ function App() {
         <Router>
           <Layout>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path = "/" element={<Dashboard />} />
               <Route path = "/quote" element={<MainTable />} />
-              <Route path = "/:id" element={<Tender />} />
+              <Route path = "/ongoing" element={<MainTable />} />
+              <Route path = "/quote/:id" element={<Tender />} />
+              <Route path = "/ongoing/:id" element={<Ongoing />} />
             </Routes>
           </Layout>
         </Router>

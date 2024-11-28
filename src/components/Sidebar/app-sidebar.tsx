@@ -51,11 +51,11 @@ const data = {
       items: [
         {
           title: "Preventivi",
-          url: "quote",
+          url: "/quote",
         },
         {
           title: "In corso",
-          url: "ongoing",
+          url: "/ongoing",
         },
       ],
     },
