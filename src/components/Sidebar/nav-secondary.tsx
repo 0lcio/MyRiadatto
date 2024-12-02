@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SunMoon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 
 import {
   SidebarGroup,
@@ -27,7 +27,7 @@ export function NavSecondary({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild size="sm">
-              <div className="pointer-events-auto">
+              <div className="cursor-pointer">
                 <ModeToggle />
               </div>
             </SidebarMenuButton>

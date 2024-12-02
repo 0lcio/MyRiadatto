@@ -63,8 +63,9 @@ export function PieCosts() {
     <>
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square min-h-[300px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
+          className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
         >
+          <p className="text-xl text-center">Costi fissi</p>
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <Pie

@@ -31,7 +31,7 @@ import {
             <AccordionTrigger>
               <div className="flex items-center gap-6">
                 <h1 className="text-lg font-semibold md:text-4xl">BRT_23_02</h1>
-                <Badge variant="outline">Preventivo</Badge>
+                <Badge variant="outline">In corso</Badge>
               </div>
             </AccordionTrigger>
             <AccordionContent>

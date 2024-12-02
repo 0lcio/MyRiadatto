@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { TenderData } from "./components/TenderData";
 import { TenderCharts } from "./components/TenderCharts";
+import { TenderRTP } from "./components/tables/TenderRTP";
 export function BadgeSecondary() {
   return;
 }
@@ -53,10 +54,15 @@ export function Tender() {
         </AccordionItem>
       </Accordion>
 
-      <div className="md:flex gap-3 pt-5">
+      <div className="md:grid grid-cols-1 md:grid-cols-3 gap-3 pt-5">
+        <div className="md:col-span-1">
         <TenderData />
+        </div>
+        <div className="md:col-span-2">
         <TenderCharts />
+        </div>
       </div>
+      <TenderRTP />
     </>
   );
 }

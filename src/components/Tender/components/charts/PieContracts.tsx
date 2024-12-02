@@ -63,7 +63,7 @@ export function PieContracts() {
     <>
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square min-h-[300px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
+          className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
         >
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />

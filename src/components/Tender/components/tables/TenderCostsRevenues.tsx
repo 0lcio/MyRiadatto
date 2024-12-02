@@ -250,7 +250,7 @@ export function TenderCostsRevenues() {
       </Table>
 
       {/* TABELLA RTP */}
-      <Table>
+      <Table className="md:hidden">
         <TableHeader>
           <TableRow>
             <TableHead className="font-semibold">

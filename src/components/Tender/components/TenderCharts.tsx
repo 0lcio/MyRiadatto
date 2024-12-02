@@ -5,10 +5,9 @@ import { PieContracts } from './charts/PieContracts'
 
 export function TenderCharts() {
   return (
-    <>
-        {/* <PieTotal /> */}
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         <PieCosts />
         <PieContracts />
-    </>
+    </div>
   )
 }

@@ -189,7 +189,7 @@ import {
             <TableHeader>
               <TableRow>
                 <TableHead className="font-semibold text-red-600">
-                  CONSULENTI COSTI FISSI
+                  COSTI FISSI
                 </TableHead>
                 <TableHead className="font-semibold text-right text-red-600">
                   IMPORTO
