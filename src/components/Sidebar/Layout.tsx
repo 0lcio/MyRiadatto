@@ -8,7 +8,9 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { BreadcrumbTool } from "./breadcrumb";
 
-const Layout = ({ children }) => {
+import { ReactNode } from "react";
+
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <SidebarProvider>
       <AppSidebar />

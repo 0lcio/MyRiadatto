@@ -2,14 +2,12 @@
 
 import * as React from "react"
 import {
-  BookOpen,
   Bot,
   Command,
   Frame,
   LifeBuoy,
   Map,
   PieChart,
-  Settings2,
   SquareTerminal,
 } from "lucide-react"
 
@@ -42,12 +40,12 @@ const data = {
       url: "/",
       icon: SquareTerminal,
       isActive: true,
-      items: [
-      ],
+      items: [],
     },
     {
       title: "Gare",
       icon: Bot,
+      url: "#",
       items: [
         {
           title: "Preventivi",

@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/accordion";
 import { MapPin, Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { TenderData } from "./components/TenderData";
 import { TenderCharts } from "./components/TenderCharts";
 import { TenderRTP } from "./components/tables/TenderRTP";

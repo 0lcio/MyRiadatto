@@ -7,7 +7,6 @@ import {
   } from "@/components/ui/accordion";
   import { MapPin, Briefcase } from "lucide-react";
   import { Badge } from "@/components/ui/badge";
-  import { Separator } from "@/components/ui/separator";
   import { OngoingData } from "./components/OngoingData";
   import { TenderCharts } from "../Tender/components/TenderCharts";
   export function BadgeSecondary() {

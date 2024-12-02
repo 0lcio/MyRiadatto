@@ -3,14 +3,6 @@
 import { Pie, PieChart } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
@@ -19,8 +11,7 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 
-import { Categories } from "@/components/Dialog/Categories";
-import { Button } from "@/components/ui/button";
+/* import { Categories } from "@/components/Dialog/Categories"; */
 
 export const description = "A pie chart with a label";
 

@@ -3,14 +3,6 @@
 import { Pie, PieChart } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
@@ -19,8 +11,7 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 
-import { Categories } from "@/components/Dialog/Categories";
-import { Button } from "@/components/ui/button";
+/* import { Categories } from "@/components/Dialog/Categories"; */
 
 export const description = "A pie chart with a label";
 
@@ -65,7 +56,6 @@ export function PieCosts() {
           config={chartConfig}
           className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
         >
-          <p className="text-xl text-center">Costi fissi</p>
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <Pie

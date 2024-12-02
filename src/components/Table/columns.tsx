@@ -50,7 +50,7 @@ export const columns: ColumnDef<Payment>[] = [
       const newPath = `${currentPath}/${info.getValue()}`;
       return (
         <Link to={newPath}>
-          {info.getValue()}
+          {info.getValue() as string}
         </Link>
       );
     },
@@ -67,7 +67,7 @@ export const columns: ColumnDef<Payment>[] = [
       const newPath = `${currentPath}/${info.row.original.id}`;
       return (
         <Link to={newPath}>
-          {info.getValue()}
+          {info.getValue() as string}
         </Link>
       );
     }
@@ -84,7 +84,7 @@ export const columns: ColumnDef<Payment>[] = [
       const newPath = `${currentPath}/${info.row.original.id}`;
       return (
         <Link to={newPath}>
-          {info.getValue()}
+          {info.getValue() as string}
         </Link>
       );
     },
@@ -101,7 +101,7 @@ export const columns: ColumnDef<Payment>[] = [
       const newPath = `${currentPath}/${info.row.original.id}`;
       return (
         <Link to={newPath}>
-          {info.getValue()}
+          {info.getValue() as string}
         </Link>
       );
     },
