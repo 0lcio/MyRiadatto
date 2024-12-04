@@ -29,6 +29,7 @@ export function NavSecondary({
             <SidebarMenuButton asChild size="sm">
               <div className="cursor-pointer">
                 <ModeToggle />
+                <span>Seleziona tema</span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>

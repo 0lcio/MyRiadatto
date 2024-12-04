@@ -1,7 +1,6 @@
-"use client";
-
-import { Pie, PieChart } from "recharts";
-
+"use client"
+import * as React from "react"
+import { Label, Pie, PieChart } from "recharts"
 import {
   ChartConfig,
   ChartContainer,
@@ -9,62 +8,90 @@ import {
   ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
-} from "@/components/ui/chart";
-
-/* import { Categories } from "@/components/Dialog/Categories"; */
-
-export const description = "A pie chart with a label";
-
+} from "@/components/ui/chart"
 const chartData = [
-  { browser: "chrome", visitors: 300000, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200000, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 400000, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 30000, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 70000, fill: "var(--color-other)" },
-];
-
+  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+]
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
   chrome: {
-    label: "E.01",
+    label: "Chrome",
     color: "hsl(var(--chart-1))",
   },
   safari: {
-    label: "E.02",
+    label: "Safari",
     color: "hsl(var(--chart-2))",
   },
   firefox: {
-    label: "E.03",
+    label: "Firefox",
     color: "hsl(var(--chart-3))",
   },
   edge: {
-    label: "E.04",
+    label: "Edge",
     color: "hsl(var(--chart-4))",
   },
   other: {
-    label: "E.05",
+    label: "Other",
     color: "hsl(var(--chart-5))",
   },
-} satisfies ChartConfig;
-
+} satisfies ChartConfig
 export function PieCosts() {
+  const totalVisitors = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+  }, [])
   return (
-    <>
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
+          className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px]"
         >
           <PieChart>
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
             <Pie
               data={chartData}
               dataKey="visitors"
-              label
               nameKey="browser"
-              animationDuration={1000}
-            />
+              innerRadius={70}
+              strokeWidth={5}
+            >
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                      >
+                        <tspan
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          className="fill-foreground text-3xl font-bold"
+                        >
+                          {totalVisitors.toLocaleString()}
+                        </tspan>
+                        <tspan
+                          x={viewBox.cx}
+                          y={(viewBox.cy || 0) + 24}
+                          className="fill-muted-foreground"
+                        >
+                          Costi Fissi
+                        </tspan>
+                      </text>
+                    )
+                  }
+                }}
+              />
+            </Pie>
             <ChartLegend
               content={
                 <ChartLegendContent nameKey="browser"/>
@@ -73,6 +100,5 @@ export function PieCosts() {
             />
           </PieChart>
         </ChartContainer>
-    </>
-  );
+  )
 }

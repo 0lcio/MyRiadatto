@@ -183,12 +183,13 @@ import {
           </TableFooter>
         </Table>
        </div>
+
         {/* TABELLA COSTI FISSI */}
         <div className="pb-5">
           <Table className="bg-red-400/[0.08] border-r">
             <TableHeader>
               <TableRow>
-                <TableHead className="font-semibold text-red-600">
+                <TableHead className="w-1/4 font-semibold text-red-600">
                   COSTI FISSI
                 </TableHead>
                 <TableHead className="font-semibold text-right text-red-600">
@@ -228,7 +229,7 @@ import {
           <Table className="bg-red-400/[0.08] border-r">
             <TableHeader>
               <TableRow>
-                <TableHead className="font-semibold text-red-600">
+                <TableHead className="w-1/4 font-semibold text-red-600">
                   CONSULENTI COSTI FISSI
                 </TableHead>
                 <TableHead className="font-semibold text-right text-red-600">
@@ -263,7 +264,7 @@ import {
               ))}
             </TableBody>
           </Table>
-          <Table className="bg-red-400/[0.08] max-w-[600px]">
+          <Table className="bg-red-400/[0.08]">
           <TableFooter>
             <TableRow>
               <TableCell colSpan={1} className="font-semibold">

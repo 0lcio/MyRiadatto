@@ -8,7 +8,6 @@ import {
   LifeBuoy,
   Map,
   PieChart,
-  SquareTerminal,
 } from "lucide-react"
 
 import { NavMain } from "@/components/Sidebar/nav-main"
@@ -35,13 +34,6 @@ const data = {
     avatar: "https://avatars.githubusercontent.com/0lcio",
   },
   navMain: [
-    {
-      title: "Dashboard",
-      url: "/",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [],
-    },
     {
       title: "Gare",
       icon: Bot,

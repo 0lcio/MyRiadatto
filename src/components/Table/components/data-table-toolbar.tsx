@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "./data-table-view-options";
 import { idOpera, statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { NewProject } from "../../NewProject/new-project"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -54,6 +55,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
+      <NewProject />
       <DataTableViewOptions table={table} />
     </div>
   )
