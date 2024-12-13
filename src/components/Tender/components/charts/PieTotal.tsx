@@ -1,0 +1,106 @@
+"use client";
+
+import { Pie, PieChart } from "recharts";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
+
+import { Categories } from "@/components/Dialog/Categories";
+import { Button } from "@/components/ui/button";
+
+export const description = "A pie chart with a label";
+
+const chartData = [
+  { browser: "chrome", visitors: 300000, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200000, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 400000, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 30000, fill: "var(--color-edge)" },
+  { browser: "other", visitors: 70000, fill: "var(--color-other)" },
+];
+
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
+  },
+  chrome: {
+    label: "E.01",
+    color: "hsl(var(--chart-1))",
+  },
+  safari: {
+    label: "E.02",
+    color: "hsl(var(--chart-2))",
+  },
+  firefox: {
+    label: "E.03",
+    color: "hsl(var(--chart-3))",
+  },
+  edge: {
+    label: "E.04",
+    color: "hsl(var(--chart-4))",
+  },
+  other: {
+    label: "E.05",
+    color: "hsl(var(--chart-5))",
+  },
+} satisfies ChartConfig;
+
+export function PieTotal() {
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex justify-between pb-0">
+          <div>
+            <CardTitle>IMPORTO LAVORI</CardTitle>
+            <CardDescription className="pt-1.5">
+              Costo totale dei lavori in base alla categoria
+            </CardDescription>
+          </div>
+          <Button variant="outline">Modifica</Button>
+        </div>
+      </CardHeader>
+      <CardContent className="py-4">
+        <h1 className="text-xl font-semibold">Totale: € 1.000.000,00</h1>
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[350px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
+        >
+          <PieChart>
+            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <Pie
+              data={chartData}
+              dataKey="visitors"
+              label
+              nameKey="browser"
+              animationDuration={1000}
+            />
+            <ChartLegend
+              content={
+                <ChartLegendContent nameKey="browser"/>
+              }
+              className="gap-5 text-sm"
+            />
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
+          Clicca <Categories /> per vedere le diverse categorie
+        </div>
+      </CardFooter>
+    </Card>
+  );
+}
