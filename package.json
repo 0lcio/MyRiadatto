@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@geist-ui/react": "^2.2.5",
@@ -50,7 +51,7 @@
     "lucide-react": "^0.462.0",
     "next-themes": "^0.4.3",
     "react": "^18.3.1",
-    "react-day-picker": "^9.4.0",
+    "react-day-picker": "^9.4.3",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",
     "react-resizable-panels": "^2.1.7",
@@ -72,6 +73,7 @@
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "gh-pages": "^6.2.0",
     "globals": "^15.12.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",

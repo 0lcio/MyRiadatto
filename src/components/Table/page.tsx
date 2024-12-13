@@ -115,10 +115,10 @@ const MainTable: React.FC = () => {
   const [loading, setLoading] = useState(true);
   
   const location = useLocation();
-  let title = "PREVENTIVI";
+  let title = "PREVENTIVI / GARE";
   const currentPath = location.pathname;
   if (currentPath != "/quote") {
-    title = "GARE IN CORSO";
+    title = "IN CORSO";
   }
 
 

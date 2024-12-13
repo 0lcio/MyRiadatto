@@ -35,12 +35,12 @@ const data = {
   },
   navMain: [
     {
-      title: "Gare",
+      title: "Commesse",
       icon: Bot,
       url: "#",
       items: [
         {
-          title: "Preventivi",
+          title: "Preventivi / Gare",
           url: "/quote",
         },
         {

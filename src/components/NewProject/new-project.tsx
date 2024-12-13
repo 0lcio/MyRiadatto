@@ -12,53 +12,41 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
-import MultipleSelect from "./MultipleSelect";
+//import MultipleSelect from "./MultipleSelect";
+import { format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+ 
+import { cn } from "@/lib/utils"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Checkbox } from "@/components/ui/checkbox";
 
 export function NewProject() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    personalInfo: {
-      firstName: "",
-      lastName: "",
-      description: "",
-    },
-    accountDetails: {
-      username: "",
-      password: "",
-      confirmPassword: "",
-    },
-    preferences: {
-      notifications: false,
-      newsletter: false,
-    },
-  });
-
+  
   const steps = [
-    {
-      title: "Titolo",
-    },
     {
       title: "Info",
     },
     {
-      title: "Conferma",
+      title: "Importo",
+    },
+    {
+      title: "Costi",
+    },
+    {
+      title: "Steps",
+    },
+    {
+      title: "RTP",
     },
   ];
-
-  const handleInputChange = (
-    section: string,
-    field: string,
-    value: string | boolean
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [section]: {
-        ...prev[section],
-        [field]: value,
-      },
-    }));
-  };
 
   const handleStepChange = (step: number) => {
     setCurrentStep(step);
@@ -77,11 +65,19 @@ export function NewProject() {
   };
 
   const handleSubmit = () => {
-    console.log("Registrazione completata", formData);
+    console.log("Registrazione completata");
     setIsOpen(false);
+    setCurrentStep(0);
   };
 
-  const exampleTitle = "Seleziona ID Opera";
+  const handleDialogClose = (isOpen: boolean) => {
+    setIsOpen(isOpen);
+    if (!isOpen) {
+      setCurrentStep(0);
+    }
+  };
+
+  /* const exampleTitle = "Seleziona ID Opera";
 
   const exampleOptions = [
     { label: "E.01", value: "electronics" },
@@ -92,7 +88,7 @@ export function NewProject() {
     { label: "E.06", value: "b" },
     { label: "E.07", value: "c" },
     { label: "E.08", value: "d" },
-  ];
+  ]; */
 
   const renderStepContent = () => {
     switch (currentStep) {
@@ -102,36 +98,59 @@ export function NewProject() {
             <div>
               <Label>Titolo</Label>
               <Input
-                value={formData.personalInfo.firstName}
-                onChange={(e) =>
-                  handleInputChange("personalInfo", "firstName", e.target.value)
-                }
                 placeholder="Inserisci titolo progetto"
               />
             </div>
+            <div className="flex items-center gap-5">
+              <Label>Scadenza</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                <Button
+          variant={"outline"}
+          className={cn(
+            "justify-start text-left font-normal",
+            !date && "text-muted-foreground"
+          )}
+        >
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? format(date, "PPP") : <span>Pick a date</span>}
+        </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  className=""
+                />
+                </PopoverContent>
+              </Popover>
+            </div>
             <div>
-              <Label>Codice Progetto</Label>
+              <Label>Committenza</Label>
               <Input
-                value={formData.personalInfo.lastName}
-                onChange={(e) =>
-                  handleInputChange("personalInfo", "lastName", e.target.value)
-                }
+                placeholder="Inserisci codice progetto"
+              />
+            </div>
+            <div>
+              <Label>Livello Progettuale</Label>
+              <Input
                 placeholder="Inserisci codice progetto"
               />
             </div>
             <div>
               <Label>Descrizione</Label>
               <Textarea
-                value={formData.personalInfo.description}
-                onChange={(e) =>
-                  handleInputChange(
-                    "personalInfo",
-                    "description",
-                    e.target.value
-                  )
-                }
                 placeholder="Inserisci descrizione"
               />
+            </div>
+            <div className="flex items-center gap-3">
+              <Label>Preventivo o Gara?</Label>
+              <Checkbox />
+            </div>
+            <div className="flex items-center gap-3">
+              <Label>RTP?</Label>
+              <Checkbox />
             </div>
           </div>
         );
@@ -141,36 +160,19 @@ export function NewProject() {
             <div>
               <Label>Ente</Label>
               <Input
-                value={formData.accountDetails.username}
-                onChange={(e) =>
-                  handleInputChange(
-                    "accountDetails",
-                    "username",
-                    e.target.value
-                  )
-                }
                 placeholder="Scegli ente"
               />
             </div>
             <div>
               <Label>Tecnico incaricato</Label>
               <Input
-                type="password"
-                value={formData.accountDetails.password}
-                onChange={(e) =>
-                  handleInputChange(
-                    "accountDetails",
-                    "password",
-                    e.target.value
-                  )
-                }
                 placeholder="Inserisci tecnico incaricato"
               />
             </div>
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
               <Label>ID Opera</Label>
               <MultipleSelect title={exampleTitle} options={exampleOptions} />
-            </div>
+            </div> */}
           </div>
         );
       case 2:
@@ -187,14 +189,14 @@ export function NewProject() {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={handleDialogClose}>
       <DialogTrigger asChild>
-        <Button className="h-8 mx-3">Nuovo Progetto</Button>
+        <Button className="h-8 mx-3">Nuova commessa</Button>
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-2xl">Nuovo progetto</DialogTitle>
+          <DialogTitle className="text-2xl">Nuova commessa</DialogTitle>
           <DialogDescription>Crea una nuova commessa</DialogDescription>
         </DialogHeader>
 

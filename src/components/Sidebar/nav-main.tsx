@@ -40,17 +40,17 @@ export function NavMain({
       <SidebarGroupLabel>Amministrazione</SidebarGroupLabel>
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton
-            tooltip="Homepage"
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            <SquareTerminal />
-            <a href="/">
+          <a href="/">
+            <SidebarMenuButton
+              tooltip="Homepage"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              <SquareTerminal />
               <span>Homepage</span>
-            </a>
-          </SidebarMenuButton>
+            </SidebarMenuButton>
+          </a>
         </SidebarMenuItem>
         {items.map((item) => (
           <Collapsible
