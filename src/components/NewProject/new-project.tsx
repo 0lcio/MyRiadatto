@@ -80,6 +80,9 @@ const infoSchema = z.object({
 });
 
 export function NewProject() {
+  
+  const [date, setDate] = React.useState<Date>();
+  
   const form = useForm<z.infer<typeof infoSchema>>({
     resolver: zodResolver(infoSchema),
     defaultValues: {

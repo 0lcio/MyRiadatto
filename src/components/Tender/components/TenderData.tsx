@@ -10,7 +10,7 @@ import {
 export function TenderData() {
   return (
     <div>
-      <div className="flex items-center justify-between pb-5">
+      {/* <div className="flex items-center justify-between pb-5">
         <span>TIPOLOGIA INCARICO</span>
         <span>
           <Select>
@@ -28,7 +28,7 @@ export function TenderData() {
             </SelectContent>
           </Select>
         </span>
-      </div>
+      </div> */}
       <TenderCostsRevenues />
     </div>
   );
