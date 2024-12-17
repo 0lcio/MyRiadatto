@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react"
 import { Table } from "@tanstack/react-table"
+import { useLocation } from 'react-router-dom'
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,6 +18,7 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
+  const location = useLocation();
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
@@ -55,7 +57,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <NewProject />
+      {location.pathname === '/quote' && <NewProject />}
       <DataTableViewOptions table={table} />
     </div>
   )
