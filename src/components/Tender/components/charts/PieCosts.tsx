@@ -6,99 +6,110 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
 } from "@/components/ui/chart"
+
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { costs: "rent", revenue: 196748.57, fill: "var(--color-rent)" },
+  { costs: "utilities", revenue: 3300, fill: "var(--color-utilities)" },
+  { costs: "salaries", revenue: 1000, fill: "var(--color-salaries)" },
+  { costs: "maintenance", revenue: 1500, fill: "var(--color-maintenance)" },
+  { costs: "other", revenue: 9100, fill: "var(--color-other)" },
+  { costs: "arch", revenue: 1500, fill: "var(--color-arch)" },
+  { costs: "cons", revenue: 4000, fill: "var(--color-cons)" },
+  { costs: "ing", revenue: 8000, fill: "var(--color-ing)" },
 ]
+
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  revenue: {
+    label: "Revenue",
   },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
+  rent: {
+    label: "Importo Netto",
+    color: "hsl(var(--chart-revenue-1))",
   },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
+  utilities: {
+    label: "Polizza RC",
+    color: "hsl(var(--chart-cost-1))",
   },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
+  salaries: {
+    label: "Notaio RTP",
+    color: "hsl(var(--chart-cost-2))",
   },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
+  maintenance: {
+    label: "Archeologo",
+    color: "hsl(var(--chart-cost-3))",
   },
   other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
+    label: "Geologo",
+    color: "hsl(var(--chart-cost-4))",
+  },
+  arch: {
+    label: "Acustico",
+    color: "hsl(var(--chart-cost-5))",
+  },
+  cons: {
+    label: "Agronomo",
+    color: "hsl(var(--chart-cost-2))",
+  },
+  ing: {
+    label: "Consulente LEED",
+    color: "hsl(var(--chart-cost-3))",
   },
 } satisfies ChartConfig
+
 export function PieCosts() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+  const totalRevenue = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.revenue, 0)
   }, [])
+
   return (
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px]"
+    <ChartContainer
+      config={chartConfig}
+      className="mx-auto aspect-square min-h-[300px] max-h-[300px] min-w-[350px]"
+    >
+      <PieChart>
+        <ChartTooltip
+          cursor={false}
+          content={<ChartTooltipContent hideLabel />}
+        />
+        <Pie
+          data={chartData}
+          dataKey="revenue"
+          nameKey="costs"
+          innerRadius={90}
+          strokeWidth={5}
         >
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
-              innerRadius={70}
-              strokeWidth={5}
-            >
-              <Label
-                content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                    return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={viewBox.cy}
-                          className="fill-foreground text-3xl font-bold"
-                        >
-                          {totalVisitors.toLocaleString()}
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground"
-                        >
-                          Costi Fissi
-                        </tspan>
-                      </text>
-                    )
-                  }
-                }}
-              />
-            </Pie>
-            <ChartLegend
-              content={
-                <ChartLegendContent nameKey="browser"/>
+          <Label
+            content={({ viewBox }) => {
+              if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                return (
+                  <text
+                    x={viewBox.cx}
+                    y={viewBox.cy}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                  >
+                    <tspan
+                      x={viewBox.cx}
+                      y={viewBox.cy}
+                      className="fill-foreground text-3xl font-bold"
+                    >
+                      {totalRevenue.toLocaleString()}
+                    </tspan>
+                    <tspan
+                      x={viewBox.cx}
+                      y={(viewBox.cy || 0) + 24}
+                      className="fill-muted-foreground"
+                    >
+                      Importo in contratto
+                    </tspan>
+                  </text>
+                )
               }
-              className="gap-5 text-sm"
-            />
-          </PieChart>
-        </ChartContainer>
+            }}
+          />
+        </Pie>
+      </PieChart>
+    </ChartContainer>
   )
 }
