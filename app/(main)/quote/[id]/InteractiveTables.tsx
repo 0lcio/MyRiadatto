@@ -10,7 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@/components/ui/table2";
-import { ContractEditDialog } from "./TableDialogs";
+import { ContractEditDialog, FixedCostsEditDialog } from "./TableDialogs";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 
@@ -27,7 +27,7 @@ function calculateTotal(contracts) {
     if (invoice.invoice === "Importo non soggetto a ribasso") {
       nonDiscountedImport = parseFloat(invoice.amount);
     }
-    if (invoice.invoice === "Ribasso Offerto") {
+    if (invoice.invoice === "Ribasso offerto") {
       discountOffered = parseFloat(invoice.amount) / 100; // Converti in percentuale
     }
   });
@@ -100,9 +100,12 @@ export function ContractTable({ contracts, projectId }) {
   );
 }
 
-export function FixedCostsTable({ fixedCost }) {
+export function FixedCostsTable({ fixedCost, projectId  }) {
+    const [dialogOpen, setDialogOpen] = useState(false);
   return (
-    <Table className="bg-red-400/[0.08]">
+    <>
+    <Table className="bg-red-400/[0.08]"
+    onDoubleClick={() => setDialogOpen(true)}>
       <TableHeader>
         <TableRow>
           <TableHead className="font-semibold text-red-600">
@@ -128,12 +131,39 @@ export function FixedCostsTable({ fixedCost }) {
         ))}
       </TableBody>
     </Table>
+    <FixedCostsEditDialog
+        isOpen={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        data={fixedCost}
+        projectId={projectId}
+        onSave={async (newData, projectId) => {
+          // Implementa qui la logica di salvataggio con supabase
+          console.log(projectId);
+          console.log(newData);
+          const supabase = createClient();
+          const { error } = await supabase
+            .from("projectFinance")
+            .update({ costs: newData })
+            .eq("id", projectId);
+          if (error) {
+            toast.error("Errore durante il salvataggio del contratto");
+            return [];
+          } else {
+            toast.success("Contratto aggiornato con successo");
+          }
+        }}
+      />
+    </>
   );
 }
 
-export function ConsultantCostsTable({ fixedConsulentCost }) {
+export function ConsultantCostsTable({ fixedConsulentCost, projectId  }) {
+    const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
-    <Table className="bg-red-400/[0.08]">
+    <>
+    <Table className="bg-red-400/[0.08]"
+    onDoubleClick={() => setDialogOpen(true)}>
       <TableHeader>
         <TableRow>
           <TableHead className="font-semibold text-red-600">
@@ -164,11 +194,34 @@ export function ConsultantCostsTable({ fixedConsulentCost }) {
             TOTALE COSTI
           </TableCell>
           <TableCell className="font-semibold text-right">
-            25,500.00 €
+            ?
           </TableCell>
         </TableRow>
       </TableFooter>
     </Table>
+    <FixedCostsEditDialog
+        isOpen={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        data={fixedConsulentCost}
+        projectId={projectId}
+        onSave={async (newData, projectId) => {
+          // Implementa qui la logica di salvataggio con supabase
+          console.log(projectId);
+          console.log(newData);
+          const supabase = createClient();
+          const { error } = await supabase
+            .from("projectFinance")
+            .update({ consultantCosts: newData })
+            .eq("id", projectId);
+          if (error) {
+            toast.error("Errore durante il salvataggio del contratto");
+            return [];
+          } else {
+            toast.success("Contratto aggiornato con successo");
+          }
+        }}
+      />
+    </>
   );
 }
 

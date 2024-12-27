@@ -1,4 +1,3 @@
-// components/TableDialogs.tsx
 'use client'
 
 import { useState } from 'react';
@@ -17,7 +16,7 @@ interface EditDialogProps {
   onClose: () => void;
   data: any[];
   projectId: string;
- onSave: (data: any[], projectId: string) => void;
+  onSave: (data: any[], projectId: string) => void;
 }
 
 export function ContractEditDialog({ isOpen, onClose, data, projectId, onSave }: EditDialogProps) {
@@ -50,6 +49,86 @@ export function ContractEditDialog({ isOpen, onClose, data, projectId, onSave }:
               onSave(editData, projectId);
               onClose();
             }}>Salva</Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function FixedCostsEditDialog({
+  isOpen,
+  onClose,
+  data,
+  projectId,
+  onSave,
+}: EditDialogProps) {
+  const [editData, setEditData] = useState(data);
+
+  // Funzione per aggiungere una nuova riga
+  const addRow = () => {
+    setEditData((prevData) => [
+      ...prevData,
+      { invoice: "", amount: 0 }, // Aggiungi una riga vuota
+    ]);
+  };
+
+  // Funzione per eliminare una riga
+  const removeRow = (index: number) => {
+    const newData = editData.filter((_, i) => i !== index);
+    setEditData(newData);
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Modifica Costi Fissi</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4">
+          {editData.map((item, index) => (
+            <div key={index} className="flex gap-2 items-center">
+              <Input
+                value={item.invoice}
+                onChange={(e) => {
+                  const newData = [...editData];
+                  newData[index].invoice = e.target.value;
+                  setEditData(newData);
+                }}
+              />
+              <Input
+                value={item.amount}
+                onChange={(e) => {
+                  const newData = [...editData];
+                  newData[index].amount = parseFloat(e.target.value);
+                  setEditData(newData);
+                }}
+                type="number"
+              />
+              {/* Tasto Elimina */}
+              <Button
+                variant="destructive"
+                onClick={() => removeRow(index)}
+                className='w-5'
+              >
+                X
+              </Button>
+            </div>
+          ))}
+          <Button variant="outline" onClick={addRow}>+</Button>
+
+          <div className="flex justify-end gap-2">
+            {/* Tasto Aggiungi riga */}
+            
+            <Button variant="outline" onClick={onClose}>Annulla</Button>
+            <Button
+              onClick={() => {
+                onSave(editData, projectId);
+                onClose();
+              }}
+            >
+              Salva
+            </Button>
           </div>
         </div>
       </DialogContent>

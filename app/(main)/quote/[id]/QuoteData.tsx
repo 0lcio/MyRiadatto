@@ -31,8 +31,8 @@ import { ContractTable, FixedCostsTable, ConsultantCostsTable, ContractCondition
         <ContractTable contracts={contracts} projectId={projectId}/>
         
         <div>
-          <FixedCostsTable fixedCost={fixedCost} />
-          <ConsultantCostsTable fixedConsulentCost={fixedConsulentCost} />
+          <FixedCostsTable fixedCost={fixedCost} projectId={projectId} />
+          <ConsultantCostsTable fixedConsulentCost={fixedConsulentCost} projectId={projectId} />
         </div>
   
         <ContractConditionsTable contractCondition={contractCondition} />
