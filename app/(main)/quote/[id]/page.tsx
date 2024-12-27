@@ -12,11 +12,11 @@ import { redirect } from "next/navigation";
 import { QuoteData } from "./QuoteData";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export default async function QuoteProject({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const supabase = createClient();
   const { data, error } = await supabase
     .from("project")

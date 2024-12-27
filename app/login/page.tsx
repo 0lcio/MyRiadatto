@@ -5,14 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { login, signup } from "./actions";
 
-export default async function LoginPage({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+const LoginPage: React.FC = () => {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
+        <div className="flex flex-col gap-6">
           <form>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center gap-2">
@@ -70,4 +67,6 @@ export default async function LoginPage({
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;
