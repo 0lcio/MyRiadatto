@@ -10,6 +10,8 @@ import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import { QuoteData } from "./QuoteData";
+import { Button } from "@/components/ui/button";
+import { TimelineLayout } from "@/components/timeline-layout";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -45,6 +47,7 @@ export default async function QuoteProject({ params }: Props) {
             <h1 className="text-lg font-extralight pt-1">
               {project.description}
             </h1>
+            <div className="flex justify-between">
             <div className="flex items-center gap-10 pt-4">
               <div className="flex items-center gap-2">
                 <MapPin />
@@ -58,7 +61,13 @@ export default async function QuoteProject({ params }: Props) {
                 <Calendar />
                 <p>{project.deadline}</p>
               </div>
+              
             </div>
+            <div className="flex justify-end">
+                <Button variant="outline"><TimelineLayout /></Button>
+              </div>
+            </div>
+            
           </AccordionContent>
         </AccordionItem>
       </Accordion>
